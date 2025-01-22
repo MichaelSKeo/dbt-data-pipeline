@@ -10,8 +10,8 @@ on:
   #   - cron: '0 8 * * *'
 
 env:
-  DBT_PROFILES_DIR: ./crm_leads_analytics
-  DBT_PROJECT_DIR: ./crm_leads_analytics
+  DBT_PROFILES_DIR: ${{ github.workspace }}/crm_leads_analytics
+  DBT_PROJECT_DIR: ${{ github.workspace }}/crm_leads_analytics
 
 jobs:
   build:
@@ -37,8 +37,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install dbt  # Ensure dbt is installed if not in requirements.txt
 
-      - name: Change directory to DBT project
-        run: cd ${{ env.DBT_PROJECT_DIR }}  # Change to the directory containing dbt_project.yml
+      - name: Navigate to DBT Project Directory
+        run: cd crm_leads_analytics  
         
       - name: Run DBT Debug
         run: dbt debug

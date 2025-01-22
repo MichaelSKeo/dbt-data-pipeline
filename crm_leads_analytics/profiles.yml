@@ -6,5 +6,5 @@ crm_leads_analytics:
     
     prod:
       type: duckdb
-      path: './data/prod_leads_database.db'
+      path: '../data/prod_leads_database.db'
   target: dev
