@@ -31,7 +31,6 @@ Omissions:
 What I Would Do Differently with Additional Time:
 - Scalable Storage and Processing: Transition storage to a cloud data warehouse (e.g. Snowflake, Redshift) and processing to distributed frameworks (e.g. Spark) for big datasets.
 - Pipeline Orchestration: Use Airflow to manage the ETL pipeline, schedule monthly file ingestion, and handle failures.
-- Integrate CI/CD for Testing and Deployment: Use GitHub Actions to implement automated testing (e.g. dbt test runs, Python unit tests) and deployment pipelines.
 - Monitoring and Alerting: Add monitoring tools (e.g., Datadog) to track pipeline performance and alert on errors or anomalies.
 - Dynamic Schema Handling: Implement schema inference using libraries like pandas-profiling or data classes to adapt to varying input file structures dynamically.
 - Stakeholder Involvement: Involvement and domain knowledge from key stakeholders could improve the outputs, increase adoption of the data assets and tools, and potential generate revenue based on the strategy and execution.     
