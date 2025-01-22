@@ -9,17 +9,17 @@ models:
           - unique
           - not_null
       - name: first_name
-        description: "the standardized first name of contacts"
+        description: "Contact's first name"
         tests: 
           - not_null
       - name: last_name
-        description: "the standardized last name of contacts"
+        description: "Contact's last name"
         tests: 
           - not_null
   - name: int_unified_source_leads
     description: "Combine leads from all sources"
     columns:
-      - name: first_name
-        description: "the standardized first name of contacts"
+      - name: phone
+        description: "Operator name"
         tests: 
           - generic_not_null
