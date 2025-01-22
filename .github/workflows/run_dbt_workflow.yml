@@ -36,6 +36,9 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install dbt  # Ensure dbt is installed if not in requirements.txt
+
+      - name: Change directory to DBT project
+        run: cd ${{ env.DBT_PROJECT_DIR }}  # Change to the directory containing dbt_project.yml
     
       - name: Run dbt workflow
         run: |
