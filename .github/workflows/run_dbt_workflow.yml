@@ -39,13 +39,15 @@ jobs:
 
       - name: Change directory to DBT project
         run: cd ${{ env.DBT_PROJECT_DIR }}  # Change to the directory containing dbt_project.yml
-    
-      - name: Run dbt workflow
-        run: |
-          dbt debug
-          dbt compile --target prod
-          dbt run --target prod
+        
+      - name: Run DBT Debug
+        run: dbt debug
+          
+      - name: Run DBT Compile
+        run: dbt compile --target prod
+          
+      - name: Run DBT
+        run: dbt run --target prod
     
       - name: Test dbt Prod
-        run: |
-          dbt test --target prod
+        run: dbt test --target prod
