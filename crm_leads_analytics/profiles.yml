@@ -1,0 +1,10 @@
+crm_leads_analytics:
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/dev_leads_database.db'
+    
+    prod:
+      type: duckdb
+      path: '../data/prod_leads_database.db'
+  target: dev
