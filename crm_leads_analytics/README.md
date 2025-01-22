@@ -1,7 +1,9 @@
 Overview
+
 The first section of this document outlines the short-term ETL solution including the trade-offs, omissions, and areas to spend additional time on for processing external lead data files into the CRM platform, downstream dashboards, and answering business questions. The second section provides long-term ELT strategies to ensure scalability, data quality, and efficiency in handling large datasets with evolving schemas.   
 
 1. Short-term ETL solution:
+
 Key Assumptions:
 - Input: Three CSV files and a SDFC extract for existing load. 
 - Output: A consolidated dataset ready for Salesforce upload, dashboards, and analysis.
@@ -35,6 +37,7 @@ What I Would Do Differently with Additional Time:
 - Stakeholder Involvement: Involvement and domain knowledge from key stakeholders could improve the outputs, increase adoption of the data assets and tools, and potential generate revenue based on the strategy and execution.     
 
 2. Long-term ETL strategic recommendation
+
 Key Assumptions: 
 - Data is sourced from external systems and delivered monthly.
 - Files contain a full refresh of existing and new records.
@@ -42,7 +45,7 @@ Key Assumptions:
 - File schemas are subject to change without notice.
 - Leads must be processed and made available for outreach promptly.
 
-2. Recommended Process: 
+Recommended Process: 
 - Scalable Architecture: Use cloud platforms (e.g., Snowflake, BigQuery) for efficient handling of 100GB data with schema-on-read for flexibility and partitioning for performance.
 - Automated Ingestion: Use tools like Fivetran or Airflow to automate monthly file loading and validate file integrity during upload (e.g. file size, format checks). 
 - Data Staging: Centralize raw data in a staging layer for auditing, versioning, and schema tracking.
