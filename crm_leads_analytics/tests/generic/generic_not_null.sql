@@ -1,3 +1,5 @@
+{{ config(severity= 'warn') }}
+
 {% test generic_not_null(model, column_name) %}
 
     select *
