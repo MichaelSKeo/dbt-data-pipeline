@@ -1,4 +1,4 @@
-Overview
+Overview:
 
 The first section of this document outlines the short-term ETL solution including the trade-offs, omissions, and areas to spend additional time on for processing external lead data files into the CRM platform, downstream dashboards, and answering business questions. The second section provides long-term ELT strategies to ensure scalability, data quality, and efficiency in handling large datasets with evolving schemas.
 
