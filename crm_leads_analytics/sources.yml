@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw_files
+    # not schema and database because the file in local 
+    # schema: raw_sales
+    # database: my_database
+    tables:
+      - name: raw_source_1
+      

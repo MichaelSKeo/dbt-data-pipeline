@@ -1,0 +1,10 @@
+crm_sales_analytics:
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/dev_crm_erp_database.db'
+    
+    prod:
+      type: duckdb
+      path: '../data/prd_crm_erp_database.db'
+  target: dev

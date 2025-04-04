@@ -2,11 +2,11 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'crm_leads_analytics'
+name: 'crm_sales_analytics'
 version: '1.0.0'
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'crm_leads_analytics'
+profile: 'crm_sales_analytics'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -30,13 +30,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  crm_leads_analytics:
+  crm_sales_analytics:
     # Config indicated by + and applies to all files under models/example/
-    staging:
+    bronze:
       +materialized: view
-    transform:
-      +materialized: ephemeral
-    mart:
+    silver:
+      +materialized: view
+    gold:
       +materialized: table
+    example:
+      +materialized: ephemeral
 tests:
-  store_failures: true
+  +store_failures: true

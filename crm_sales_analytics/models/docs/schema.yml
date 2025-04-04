@@ -1,0 +1,75 @@
+
+version: 2
+
+sources:
+  - name: dev_crm_erp_database  # This should match your DuckDB database name
+    description: "CRM ERP data stored in DuckDB"
+    schema: main  # DuckDB often defaults to 'main' schema unless specified
+    tables:
+      - name: raw_crm_cust_info  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: cst_id
+            description: "Primary key"
+      - name: raw_crm_prd_info  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: prd_id
+            description: "Primary key"
+      - name: raw_crm_sales_details  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: sls_ord_num
+            description: "Primary key"
+      - name: raw_erp_cust_az12  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: cid
+            description: "Primary key"
+      - name: raw_erp_loc_a101  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: cid
+            description: "Primary key"
+      - name: raw_erp_px_cat_g1v2  # The table created from CSV
+        description: "Data imported from CSV"
+        columns:
+          - name: id
+            description: "Primary key"
+
+models:
+  - name: gold_customers_dim
+    description: '{{ doc("description") }}'
+    columns: 
+      - name: customer_key
+        description: '{{ doc("customer_key") }}'
+        tests: 
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Unique numerical identifier assigned to each customer."
+        tests: 
+          - unique
+          - not_null
+      - name: customer_number
+        description: "Alphanumeric identifier representing the customer, used for tacking and referncing."
+        tests: 
+          - unique
+          - not_null
+          - generic_not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'returned']
+
+models:
+  - name: gold_sales_fact
+    description: "Provides details of sales transactions with sales amount, price, and quantity."
+    columns: 
+      - name: customer_key
+        description: ""
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('gold_customers_dim')
+              field: customer_key

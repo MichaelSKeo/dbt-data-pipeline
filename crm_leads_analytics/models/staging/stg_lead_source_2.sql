@@ -1,4 +1,5 @@
 with source_2 as (
+    
     select
         company as company,
         type_license as license_type,

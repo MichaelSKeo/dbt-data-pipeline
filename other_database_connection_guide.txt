@@ -1,0 +1,76 @@
+If you want to connect Snowflake, Redshift, and S3 as source data for your dbt project, you need to define them properly in profiles.yml and schema.yml. 
+Here’s how you can configure it step by step.
+
+profiles.yml
+
+your_project:
+  target: dev
+  outputs:
+    dev_snowflake:
+      type: snowflake
+      account: "<your_snowflake_account>"
+      user: "<your_username>"
+      password: "<your_password>"
+      role: "<your_role>"
+      database: "<your_snowflake_db>"
+      warehouse: "<your_warehouse>"
+      schema: "<your_schema>"
+      threads: 4
+
+    dev_redshift:
+      type: redshift
+      host: "<your_redshift_host>"
+      user: "<your_username>"
+      password: "<your_password>"
+      port: 5439
+      dbname: "<your_redshift_db>"
+      schema: "<your_schema>"
+      threads: 4
+
+    dev_s3_duckdb:
+      type: duckdb
+      path: "s3://your-bucket/path-to-duckdb.db"
+      schema: "main"
+
+schema.yml
+
+version: 2
+
+sources:
+  - name: snowflake_source
+    description: "Data coming from Snowflake"
+    database: "<your_snowflake_db>"
+    schema: "<your_schema>"
+    tables:
+      - name: orders
+        description: "Order data from Snowflake"
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+
+  - name: redshift_source
+    description: "Data from Amazon Redshift"
+    database: "<your_redshift_db>"
+    schema: "<your_schema>"
+    tables:
+      - name: customers
+        description: "Customer data from Redshift"
+        columns:
+          - name: customer_id
+            tests:
+              - unique
+              - not_null
+
+  - name: s3_source
+    description: "Data from S3 using DuckDB"
+    schema: "main"
+    tables:
+      - name: web_events
+        description: "Web event data stored as Parquet in S3"
+        columns:
+          - name: event_id
+            tests:
+              - unique
+              - not_null
